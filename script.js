@@ -1,17 +1,26 @@
-
 var continueButton = document.getElementById("Continue");
 
-var continueButton2 = document.getElementById("Continue2");
-continueButton2.style.display = "none";
-
-var continueButton3 = document.getElementById("Continue3");
-continueButton3.style.display = "none";
-
-var continueButton4 = document.getElementById("Continue4");
-continueButton4.style.display = "none";
-
 var reStart = document.getElementById("Restart");
-  reStart.style.display = "none";
+reStart.style.display = "none";
+
+var clickCount = 0;
+
+var button1 = document.getElementById("option1");
+button1.style.display = "none";
+
+var button2 = document.getElementById("option2");
+button2.style.display = "none";
+
+var button3 = document.getElementById("option3");
+button1.style.display = "none";
+
+var button4 = document.getElementById("option4");
+button2.style.display = "none";
+
+if (clickCount == 0) {
+  button3.style.display = "none";
+  button4.style.display = "none";
+};
 
 var gameOver = document.createElement("button");
 gameOver.innerHTML = "GAME OVER";
@@ -19,46 +28,32 @@ gameOver.id = "gameOver";
 gameOver.style.display = "none";
 document.body.appendChild(gameOver);
 
-var gameOver2 = document.createElement("button");
-gameOver2.innerHTML = "GAME OVER";
-gameOver2.id = "gameOver2";
-gameOver2.style.display = "none";
-document.body.appendChild(gameOver2);
+function redClick() {
+  document.getElementById("imag3").src = "pics/imgred.png";
+  document.getElementById("firstxt").innerHTML = "She looks at you, feeling betrayed. Velenium can't beleive how little you know her. She thought you were her friend. But you're just like the rest of them. All of you are the same...";
 
-var gameOver3 = document.createElement("button");
-gameOver3.innerHTML = "GAME OVER";
-gameOver3.id = "gameOver3";
-gameOver3.style.display = "none";
-document.body.appendChild(gameOver3);
+  button1.style.display = "none";
+  button2.style.display = "none";
 
-var gameOver3 = document.createElement("button");
-gameOver4.innerHTML = "GAME OVER";
-gameOver4.id = "gameOver4";
-gameOver4.style.display = "none";
-document.body.appendChild(gameOver4);
+  gameOver.style.display = "";
+    gameOver.addEventListener("click", gameOverr);
+};
 
-var clickCount = 0;
+function blueClick() {
+  document.getElementById("imag3").src = "pics/imgblue.png";
+  document.getElementById("firstxt").innerHTML = "Velenium loves your thoughtfulness. She feels like she made the right choice. Hopefully you can stay her friend...forever...";
 
-var button1 = document.getElementById("option1");
-var button2 = document.getElementById("option2");
-button1.style.display = "none";
-button2.style.display = "none";
+  button1.style.display = "none";
+  button2.style.display = "none";
 
-var button3 = document.getElementById("option3");
-var button4 = document.getElementById("option4");
-button3.style.display = "none";
-button4.style.display = "none";
+  continueButton.style.display = "";
 
-var button5 = document.getElementById("option5");
-var button6 = document.getElementById("option6");
-var button7 = document.getElementById("option7");
-button3.style.display = "none";
-button4.style.display = "none";
-
+  continueButton.addEventListener("click", secondPage);
+};
 continueButton.addEventListener("click", function () {
     clickCount++;
     firstPage();
-  
+
   function firstPage() {
 
     document.getElementById("firstxt").innerHTML = "She hates chocolate, yellow, and impoliteness. She loves shoujo manga, fruit, and jokes. Ready to have fun?";
@@ -71,41 +66,37 @@ continueButton.addEventListener("click", function () {
   button1.style.display = "";
   button2.style.display = "";
 
-    
+
     button1.addEventListener("click", redClick);
     button2.addEventListener("click", blueClick);
    }
  }
 });
+function gameOverr() {
+  document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
+  continueButton.style.display = "";
+  document.getElementById("imag3").src = "pics/img1.png";
+  clickCount = 0;
+  gameOver.style.display = "none";
+  };
+function reStartt() {
+  document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
+  continueButton.style.display = "";
+  document.getElementById("imag3").src = "pics/img1.png";
+  clickCount = 0;
+   document.body.style.backgroundColor = '#ffd3f5';
+  reStart.style.display = "none";
+  };
 
-function redClick() {
-  document.getElementById("imag3").src = "pics/imgred.png";
-  document.getElementById("firstxt").innerHTML = "She looks at you, feeling betrayed. Velenium can't beleive how little you know her. She thought you were her friend. But you're just like the rest of them. All of you are the same...";
-  
-  button1.style.display = "none";
-  button2.style.display = "none";
+var button3 = document.getElementById("option3");
+button3.style.display = "none";
 
-  gameOver.style.display = "";
-    
-  
-    gameOver.addEventListener("click", gameOverr);
-}
-
-function blueClick() {
-  document.getElementById("imag3").src = "pics/imgblue.png";
-  document.getElementById("firstxt").innerHTML = "Velenium loves your thoughtfulness. She feels like she made the right choice. Hopefully you can stay her friend...forever...";
-
-  button1.style.display = "none";
-  button2.style.display = "none";
-
-  continueButton2.style.display = "";
-    
-  continueButton2.addEventListener("click", secondPage);
-}
+var button4 = document.getElementById("option4");
+button4.style.display = "none";
 
 function secondPage() {
   document.getElementById("firstxt").innerHTML = "Velenium's birthday is tommorow. She hasen't gotten a present in a long time and is hoping you get her something. Will you get her a headband with daisies on it or a strawberry cake?";
-  continueButton2.style.display = "none";
+  continueButton.style.display = "none";
   document.getElementById("imag3").src = "pics/img2.png";
 
   button3.style.display = "";
@@ -114,54 +105,33 @@ function secondPage() {
   button3.addEventListener("click", cakeClick);
   button4.addEventListener("click", headbandClick);  
 }
-
 function cakeClick() {
   document.getElementById("imag3").src = "pics/imgcake.png";
   document.getElementById("firstxt").innerHTML = "It's...so perfect! She can barely contain herself as she stares at the birthday gift. Everything is perfect. You...are perfect. Finally, she found someone worth saving. A kind angel such as yourself will never leave her sight again.";
-  
-  document.getElementById("option3").style.display = "none";
-  document.getElementById("option4").style.display = "none";
 
-  continueButton3.style.display = "";
+  button3.style.display = "none";
+  button4.style.display = "none";
 
-  continueButton3.addEventListener("click", thirdPage);
+  continueButton.style.display = "";
+
+  continueButton.addEventListener("click", thirdPage);
 }
-
 function headbandClick() {
   document.getElementById("imag3").src = "pics/imgheadband.png";
   document.getElementById("firstxt").innerHTML = "Velenium looks at you with disgust. She's not a fan of pink. She never has been. It's like you aren't even trying. She's not even a fan of you. What a waste...";
   document.getElementById("option3").style.display = "none";
   document.getElementById("option4").style.display = "none";
 
-  gameOver2.style.display = "";
+  gameOver.style.display = "";
 
-    gameOver2.addEventListener("click", gameOverr);
+    gameOver.addEventListener("click", gameOverr);
 
 }
-
 function thirdPage() {
    document.body.style.backgroundColor = '#4091ce';
-  continueButton3.style.display = "none";
+  continueButton.style.display = "none";
   document.getElementById("firstxt").innerHTML = "You did it! You saved Velenium! And...your life...";
   reStart.style.display = "";
 
 reStart.addEventListener("click", reStartt);
 }
-
-function gameOverr() {
-  document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
-  continueButton.style.display = "";
-  document.getElementById("imag3").src = "pics/img1.png";
-  clickCount = 0;
-  gameOver.style.display = "none";
-  gameOver2.style.display = "none";
-  }
-
-function reStartt() {
-  document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
-  continueButton.style.display = "";
-  document.getElementById("imag3").src = "pics/img1.png";
-  clickCount = 0;
-   document.body.style.backgroundColor = '#ffd3f5';
-  reStart.style.display = "none";
-  }
