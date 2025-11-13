@@ -95,6 +95,8 @@ var button4 = document.getElementById("option4");
 button4.style.display = "none";
 
 function secondPage() {
+
+ removeEventListener("redClick, blueClick");
   document.getElementById("firstxt").innerHTML = "Velenium's birthday is tommorow. She hasen't gotten a present in a long time and is hoping you get her something. Will you get her a headband with daisies on it or a strawberry cake?";
   continueButton.style.display = "none";
   document.getElementById("imag3").src = "pics/img2.png";
@@ -128,6 +130,8 @@ function headbandClick() {
 
 }
 function thirdPage() {
+   removeEventListener("cakeClick, headbandClick");
+
    document.body.style.backgroundColor = '#4091ce';
   continueButton.style.display = "none";
   document.getElementById("firstxt").innerHTML = "You did it! You saved Velenium! And...your life...";
