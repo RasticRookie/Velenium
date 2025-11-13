@@ -128,7 +128,7 @@ function headbandClick() {
 
 }
 function thirdPage() {
-   removeEventListener("cakeClick, headbandClick");
+   removeEventListener("button3, button4");
 
    document.body.style.backgroundColor = '#4091ce';
   continueButton.style.display = "none";
