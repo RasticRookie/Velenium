@@ -1,8 +1,6 @@
 var continueButton = document.getElementById("Continue");
-
 var reStart = document.getElementById("Restart");
 reStart.style.display = "none";
-
 var clickCount = 0;
 
 var button1 = document.getElementById("option1");
@@ -50,6 +48,7 @@ function blueClick() {
 
   continueButton.addEventListener("click", secondPage);
 };
+
 continueButton.addEventListener("click", function () {
     clickCount++;
     firstPage();
@@ -96,7 +95,6 @@ button4.style.display = "none";
 
 function secondPage() {
 
- removeEventListener("redClick, blueClick");
   document.getElementById("firstxt").innerHTML = "Velenium's birthday is tommorow. She hasen't gotten a present in a long time and is hoping you get her something. Will you get her a headband with daisies on it or a strawberry cake?";
   continueButton.style.display = "none";
   document.getElementById("imag3").src = "pics/img2.png";
