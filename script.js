@@ -128,8 +128,6 @@ function headbandClick() {
 
 }
 function thirdPage() {
-   removeEventListener("button3, button4");
-
    document.body.style.backgroundColor = '#4091ce';
   continueButton.style.display = "none";
   document.getElementById("firstxt").innerHTML = "You did it! You saved Velenium! And...your life...";
