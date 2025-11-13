@@ -77,6 +77,10 @@ function gameOverr() {
   document.getElementById("imag3").src = "pics/img1.png";
   clickCount = 0;
   gameOver.style.display = "none";
+    button1.style.display = "none";
+  button2.style.display = "none";
+button4.style.display = "none";
+button4.style.display = "none";
   };
 function reStartt() {
   document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
@@ -85,6 +89,11 @@ function reStartt() {
   clickCount = 0;
    document.body.style.backgroundColor = '#ffd3f5';
   reStart.style.display = "none";
+  button1.style.display = "none";
+  button2.style.display = "none";
+button4.style.display = "none";
+button4.style.display = "none";
+
   };
 
 var button3 = document.getElementById("option3");
