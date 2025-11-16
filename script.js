@@ -1,9 +1,21 @@
 const continueButton = document.getElementById("Continue");
 const clickCount = 0;
-
-
 const reStart = document.getElementById("Restart");
 reStart.style.display = "none";
+const gameOver = document.createElement("button");
+gameOver.innerHTML = "GAME OVER";
+gameOver.id = "gameOver";
+gameOver.style.display = "none";
+document.body.appendChild(gameOver);
+const button1 = document.getElementById("option1");
+button1.style.display = "none";
+const button2 = document.getElementById("option2");
+button2.style.display = "none";
+const button3 = document.getElementById("option3");
+button3.style.display = "none";
+const button4 = document.getElementById("option4");
+button4.style.display = "none";
+
 
 function reStartt() {
   document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
@@ -18,13 +30,6 @@ button4.style.display = "none";
 button4.style.display = "none";
   };
 
-
-var gameOver = document.createElement("button");
-
-gameOver.innerHTML = "GAME OVER";
-gameOver.id = "gameOver";
-gameOver.style.display = "none";
-document.body.appendChild(gameOver);
 function gameOverr() {
   document.getElementById("firstxt").innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
   continueButton.style.display = "";
@@ -37,24 +42,10 @@ button4.style.display = "none";
 button4.style.display = "none";
   };
 
-
-var button1 = document.getElementById("option1");
-button1.style.display = "none";
-
-var button2 = document.getElementById("option2");
-button2.style.display = "none";
-
-var button3 = document.getElementById("option3");
-button3.style.display = "none";
-
-var button4 = document.getElementById("option4");
-button4.style.display = "none";
-
 if (clickCount == 0) {
   button3.style.display = "none";
   button4.style.display = "none";
 };
-
 
 function redClick() {
   document.getElementById("imag3").src = "pics/imgred.png";
