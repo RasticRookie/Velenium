@@ -1,179 +1,181 @@
-// Cleaned and safer version of your script.js
-
-// Elements (grab once)
+// ---------------------
+// ELEMENTS
+// ---------------------
 const continueButton = document.getElementById("Continue");
-const reStartBtn = document.getElementById("Restart");
-const option1 = document.getElementById("option1");
-const option2 = document.getElementById("option2");
-const option3 = document.getElementById("option3");
-const option4 = document.getElementById("option4");
-const firstxt = document.getElementById("firstxt");
-const imag3 = document.getElementById("imag3");
+const reStart = document.getElementById("Restart");
+const gameOver = document.getElementById("GameOver");
+const button1 = document.getElementById("option1");
+const button2 = document.getElementById("option2");
+const button3 = document.getElementById("option3");
+const button4 = document.getElementById("option4");
 
-// State
+const img = document.getElementById("imag3");
+const textBox = document.getElementById("firstxt");
+
+// ---------------------
+// INITIAL STATE
+// ---------------------
 let clickCount = 0;
-let currentState = "playing"; // 'playing' | 'gameover'
 
-// Ensure initial visibility
-function show(el) { el.style.display = "inline-block"; }
-function hide(el) { el.style.display = "none"; }
+hideAllOptions();
+reStart.style.display = "none";
+gameOver.style.display = "none";
+
+// ---------------------
+// EVENT LISTENERS (added ONCE)
+// ---------------------
+continueButton.addEventListener("click", handleContinue);
+button1.addEventListener("click", redClick);
+button2.addEventListener("click", blueClick);
+button3.addEventListener("click", cakeClick);
+button4.addEventListener("click", headbandClick);
+reStart.addEventListener("click", reStartt);
+gameOver.addEventListener("click", gameOverr);
+
+// ---------------------
+// HELPERS
+// ---------------------
 function hideAllOptions() {
-  hide(option1);
-  hide(option2);
-  hide(option3);
-  hide(option4);
+  button1.style.display = "none";
+  button2.style.display = "none";
+  button3.style.display = "none";
+  button4.style.display = "none";
 }
 
-// Create / setup gameOver button once
-const gameOverBtn = document.createElement("button");
-gameOverBtn.innerText = "GAME OVER";
-gameOverBtn.id = "gameOver";
-hide(gameOverBtn);
-document.body.appendChild(gameOverBtn);
-
-// Centralized game over handler
-function gameOverr() {
-  currentState = "gameover";
-  // Reset the scene text & image to intro
-  firstxt.innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
-  imag3.src = "pics/img1.png";
-  clickCount = 0;
-
-  // Hide interactive options & continue, show restart
+function showOptions(...buttons) {
   hideAllOptions();
-  hide(gameOverBtn);
-  hide(continueButton);
-  show(reStartBtn);
-  document.body.style.backgroundColor = '#ffd3f5';
+  buttons.forEach(btn => btn.style.display = "");
 }
 
-// Centralized restart handler
-function reStartt() {
-  currentState = "playing";
-  // Set intro text/image
-  firstxt.innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
-  imag3.src = "pics/img1.png";
-  clickCount = 0;
+// ---------------------
+// PAGE LOGIC
+// ---------------------
 
-  // Hide options / gameOver and show continue
+function handleContinue() {
+  clickCount++;
+
+  if (clickCount === 1) {
+    // PAGE 1
+    textBox.innerHTML = "She hates chocolate, yellow, and impoliteness. She loves shoujo manga, fruit, and jokes. Ready to have fun?";
+    continueButton.style.display = "";
+  } 
+  
+  else if (clickCount === 2) {
+    // PAGE 2 — yogurt choices
+    continueButton.style.display = "none";
+    img.src = "pics/img2.png";
+    textBox.innerHTML =
+      "Today, Velenium wanted to get something sweet. She got two cups of frozen yogurt... She came back with a blue cup with sprinkles/chocolate yogurt and a red cup with vanilla + blueberries.";
+
+    showOptions(button1, button2); // red / blue options
+  }
+}
+
+// ---------------------
+// OPTION BRANCHES — PAGE 2
+// ---------------------
+
+function redClick() {
+  img.src = "pics/imgred.png";
+  textBox.innerHTML =
+    "She looks at you, feeling betrayed. Velenium can't believe how little you know her...";
+
   hideAllOptions();
-  hide(gameOverBtn);
-  show(continueButton);
-  hide(reStartBtn);
-  document.body.style.backgroundColor = '#ffd3f5';
+  gameOver.style.display = "";
 }
 
-// Small helper functions for option outcomes
-function onRedChoice() {
-  // Game over path
-  imag3.src = "pics/imgred.png";
-  firstxt.innerHTML = "She looks at you, feeling betrayed. Velenium can't believe how little you know her...";
+function blueClick() {
+  img.src = "pics/imgblue.png";
+  textBox.innerHTML =
+    "Velenium loves your thoughtfulness. She feels like she made the right choice.";
+
   hideAllOptions();
-  show(gameOverBtn);
-  hide(continueButton);
-  // note: gameOver listener attached once in setup
+  continueButton.style.display = "";
+
+  // After picking blue, next press goes to page 3
+  continueButton.onclick = secondPage;
 }
 
-function onBlueChoice() {
-  imag3.src = "pics/imgblue.png";
-  firstxt.innerHTML = "Velenium loves your thoughtfulness. She feels like she made the right choice.";
-  hideAllOptions();
-  show(continueButton);
-}
-
-// Flow pages
-function firstPage() {
-  firstxt.innerHTML = "She hates chocolate, yellow, and impoliteness. She loves shoujo manga, fruit, and jokes. Ready to have fun?";
-}
+// ---------------------
+// PAGE 3 — birthday decision
+// ---------------------
 
 function secondPage() {
-  firstxt.innerHTML = "Velenium's birthday is tomorrow. Will you get her a headband with daisies or a strawberry cake?";
-  imag3.src = "pics/img2.png";
-  hide(continueButton);
+  continueButton.onclick = handleContinue; // reset behavior
 
-  // Show options 3/4 and leave their listeners attached once (setup)
-  show(option3);
-  show(option4);
+  img.src = "pics/img2.png";
+  textBox.innerHTML =
+    "Velenium's birthday is tomorrow... Will you get her a daisy headband or a strawberry cake?";
+
+  continueButton.style.display = "none";
+  showOptions(button3, button4); // cake / headband
 }
 
-function thirdPage() {
-  document.body.style.backgroundColor = '#4091ce';
-  hide(continueButton);
-  firstxt.innerHTML = "You did it! You saved Velenium! And...your life...";
-  show(reStartBtn);
-}
+// ---------------------
+// PAGE 3 OPTIONS
+// ---------------------
 
-// Specific option handlers
 function cakeClick() {
-  imag3.src = "pics/imgcake.png";
-  firstxt.innerHTML = "It's...so perfect! She can barely contain herself as she stares at the birthday gift...";
-  hide(option3);
-  hide(option4);
-  show(continueButton);
+  img.src = "pics/imgcake.png";
+  textBox.innerHTML =
+    "It's...so perfect! She stares at the birthday gift. Everything is perfect.";
+
+  hideAllOptions();
+  continueButton.style.display = "";
+  continueButton.onclick = thirdPage;
 }
 
 function headbandClick() {
-  imag3.src = "pics/imgheadband.png";
-  firstxt.innerHTML = "Velenium looks at you with disgust. She's not a fan of pink...";
+  img.src = "pics/imgheadband.png";
+  textBox.innerHTML =
+    "Velenium looks at you with disgust. She's not a fan of pink...";
+
   hideAllOptions();
-  show(gameOverBtn);
-  hide(continueButton);
+  gameOver.style.display = "";
 }
 
-// Setup: attach listeners once
-function setup() {
-  // initial UI state
-  show(continueButton);
-  hide(reStartBtn);
-  hideAllOptions();
-  hide(gameOverBtn);
+// ---------------------
+// PAGE 4 — ending
+// ---------------------
 
-  // Continue button: single listener
-  continueButton.addEventListener("click", () => {
-    if (currentState === "gameover") return; // ignore while game over
-    clickCount++;
-    if (clickCount === 1) {
-      firstPage();
-    } else if (clickCount === 2) {
-      // move to choices between red/blue
-      firstxt.innerHTML = "Today, Velenium wanted to get something sweet. She got two cups of frozen yogurt...";
-      hide(continueButton);
-      show(option1);
-      show(option2);
-    } else {
-      // keep safe default
-      hideAllOptions();
-    }
-  });
+function thirdPage() {
+  document.body.style.backgroundColor = '#4091ce';
+  continueButton.style.display = "none";
 
-  // Option buttons for first choice
-  option1.addEventListener("click", () => {
-    onRedChoice();
-  });
-  option2.addEventListener("click", () => {
-    onBlueChoice();
-  });
+  textBox.innerHTML =
+    "You did it! You saved Velenium! And...your life...";
 
-  // Option buttons for second choice (cake/headband)
-  option3.addEventListener("click", () => {
-    cakeClick();
-    // move to next page when user hits continue
-    // ensure the continue listener for thirdPage is attached once
-    // we attach a one-time handler to move to thirdPage after cake
-    const contOnce = function () {
-      thirdPage();
-      continueButton.removeEventListener("click", contOnce);
-    };
-    // only add the one-time handler if continue is visible
-    continueButton.addEventListener("click", contOnce);
-  });
-  option4.addEventListener("click", () => {
-    headbandClick();
-  });
-
-  // Game over and restart listeners (attached once)
-  gameOverBtn.addEventListener("click", gameOverr);
-  reStartBtn.addEventListener("click", reStartt);
+  reStart.style.display = "";
 }
 
-setup();
+// ---------------------
+// RESTART & GAME OVER
+// ---------------------
+
+function reStartt() {
+  resetGame();
+}
+
+function gameOverr() {
+  resetGame();
+  gameOver.style.display = "none";
+}
+
+function resetGame() {
+  img.src = "pics/img1.png";
+  textBox.innerHTML = "Velenium is a zombie. She wants to feel normal again and needs your help.";
+
+  clickCount = 0;
+
+  document.body.style.backgroundColor = '#ffd3f5';
+
+  reStart.style.display = "none";
+  continueButton.style.display = "";
+  gameOver.style.display = "none";
+
+  hideAllOptions();
+
+  // Reset continue behavior
+  continueButton.onclick = handleContinue;
+}
+
