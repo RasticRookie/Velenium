@@ -1,10 +1,10 @@
-const continueButton = document.getElementById("Continue");
-const reStart = document.getElementById("Restart");
-const gameOver = document.getElementById("GameOver");
-const button1 = document.getElementById("option1");
-const button2 = document.getElementById("option2");
-const button3 = document.getElementById("option3");
-const button4 = document.getElementById("option4");
+var continueButton = document.getElementById("Continue");
+var reStart = document.getElementById("Restart");
+var gameOver = document.getElementById("GameOver");
+var button1 = document.getElementById("option1");
+var button2 = document.getElementById("option2");
+var button3 = document.getElementById("option3");
+var button4 = document.getElementById("option4");
 
 reStart.style.display = "none";
 gameOver.style.display = "none";
