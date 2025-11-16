@@ -1,8 +1,8 @@
-var continueButton = document.getElementById("Continue");
-var clickCount = 0;
+const continueButton = document.getElementById("Continue");
+const clickCount = 0;
 
 
-var reStart = document.getElementById("Restart");
+const reStart = document.getElementById("Restart");
 reStart.style.display = "none";
 
 function reStartt() {
